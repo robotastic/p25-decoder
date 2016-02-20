@@ -86,7 +86,7 @@ int main(int argc,      // Number of strings in array argv
 
     tb = gr::make_top_block("Trunking");
    source = gr::blocks::file_source::make(sizeof(float),argv[1], false);
-    throttle =gr::blocks::throttle::make(	sizeof(float),48000);
+    throttle =gr::blocks::throttle::make(sizeof(float),48000);
 
 
 
@@ -100,7 +100,7 @@ int main(int argc,      // Number of strings in array argv
         //-- stop flow graph execution
         //------------------------------------------------------------------
         BOOST_LOG_TRIVIAL(info) << "stopping flow graph";
-        tb->stop();
+
         tb->wait();
         
 
