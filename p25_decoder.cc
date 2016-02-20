@@ -78,13 +78,13 @@ p25_decoder::p25_decoder(char *filename)
 	//float convert_num = float(1.0)/float(32768.0);
         
 	multiplier = gr::blocks::multiply_const_ff::make(convert_num);
-	tm *ltm = localtime(&starttime);
+/*	tm *ltm = localtime(&starttime);
 
 	std::stringstream path_stream;
 	path_stream << boost::filesystem::current_path().string() <<  "/" << 1900 + ltm->tm_year << "/" << 1 + ltm->tm_mon << "/" << ltm->tm_mday;
 
 	boost::filesystem::create_directories(path_stream.str());
-	sprintf(filename, "%s/%ld-%ld_%g.wav", path_stream.str().c_str(),talkgroup,timestamp,freq);
+	sprintf(filename, "%s/%ld-%ld_%g.wav", path_stream.str().c_str(),talkgroup,timestamp,freq);*/
 	wav_sink = gr::blocks::nonstop_wavfile_sink::make(filename,1,8000,16);
 
     null_sink = gr::blocks::null_sink::make(sizeof(int16_t)); //sizeof(gr_complex));
