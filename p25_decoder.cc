@@ -3,41 +3,16 @@
 #include <boost/log/trivial.hpp>
 
 
-p25_decoder_sptr make_p25_decoder()
+p25_decoder_sptr make_p25_decoder(char *filename)
 {
-	return gnuradio::get_initial_sptr(new p25_decoder());
-}
-
-
-unsigned p25_decoder::GCD(unsigned u, unsigned v) {
-	while ( v != 0) {
-		unsigned r = u % v;
-		u = v;
-		v = r;
-	}
-	return u;
-}
-
-std::vector<float> p25_decoder::design_filter(double interpolation, double deci) {
-	float beta = 5.0;
-	float trans_width = 0.5 - 0.4;
-	float mid_transition_band = 0.5 - trans_width/2;
-
-	std::vector<float> result = gr::filter::firdes::low_pass(
-	                                interpolation,
-	                                1,
-	                                mid_transition_band/interpolation,
-	                                trans_width/interpolation,
-	                                gr::filter::firdes::WIN_KAISER,
-	                                beta
-	                            );
-
-	return result;
+	return gnuradio::get_initial_sptr(new p25_decoder(filename));
 }
 
 
 
-p25_decoder::p25_decoder()
+
+
+p25_decoder::p25_decoder(char *filename)
 	: gr::hier_block2 ("p25_decoder",
 	                   gr::io_signature::make  (1, 1, sizeof(float)),
 	                   gr::io_signature::make  (0, 0, sizeof(float)))
@@ -110,7 +85,7 @@ p25_decoder::p25_decoder()
 
 	boost::filesystem::create_directories(path_stream.str());
 	sprintf(filename, "%s/%ld-%ld_%g.wav", path_stream.str().c_str(),talkgroup,timestamp,freq);
-	wav_sink = gr::blocks::nonstop_wavfile_sink::make("test.wav",1,8000,16);
+	wav_sink = gr::blocks::nonstop_wavfile_sink::make(filename,1,8000,16);
 
     null_sink = gr::blocks::null_sink::make(sizeof(int16_t)); //sizeof(gr_complex));
 

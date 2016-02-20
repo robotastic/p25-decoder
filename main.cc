@@ -76,7 +76,7 @@ int main(int argc,      // Number of strings in array argv
     gr::blocks::file_source::sptr source;
     gr::blocks::throttle::sptr throttle;
 
-    p25_decoder_sptr decoder = make_p25_decoder();
+    p25_decoder_sptr decoder = make_p25_decoder(argv[2]);
     BOOST_STATIC_ASSERT(true) __attribute__((unused));
     signal(SIGINT, exit_interupt);
     logging::core::get()->set_filter
