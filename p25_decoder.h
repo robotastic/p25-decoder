@@ -70,15 +70,15 @@
 
 class p25_decoder;
 typedef boost::shared_ptr<p25_decoder> p25_decoder_sptr;
-p25_decoder_sptr make_p25_decoder();
+p25_decoder_sptr make_p25_decoder(char *filename);
 
 
 
 class p25_decoder : public gr::hier_block2
 {
-	friend p25_decoder_sptr make_p25_decoder();
+	friend p25_decoder_sptr make_p25_decoder(char *filename);
 protected:
-	p25_decoder();
+	p25_decoder(char *filename);
 
 public:
 	~p25_decoder();
@@ -96,8 +96,6 @@ private:
 	time_t timestamp;
 	time_t starttime;
 
-	char filename[160];
-	char raw_filename[160];
 	int num;
 
 	bool iam_logging;
