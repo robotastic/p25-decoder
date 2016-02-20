@@ -102,6 +102,7 @@ int main(int argc,      // Number of strings in array argv
         BOOST_LOG_TRIVIAL(info) << "stopping flow graph";
         //tb->stop();
         tb->wait();
+        tb->stop();
 
 
 
