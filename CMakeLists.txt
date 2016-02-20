@@ -68,7 +68,6 @@ find_package(Gnuradio "3.7.2" REQUIRED)
 #find_package(LibMiriSDR)
 find_package(GrOsmoSDR)
 find_package(LibHackRF)
-find_package(LibDSD)
 #find_package(LibbladeRF)
 find_package(LibOP25)
 find_package(LibOP25Repeater)
@@ -129,8 +128,6 @@ include_directories(
     ${Boost_INCLUDE_DIRS}
     ${GNURADIO_RUNTIME_INCLUDE_DIRS}
     ${GROSMOSDR_INCLUDE_DIR}
-    ${LIBDSD_INCLUDE_DIR}
-    #/usr/local/include/dsd/
 	  #./lib/
 )
 
@@ -138,7 +135,6 @@ link_directories(
     ${Boost_LIBRARY_DIRS}
     ${GNURADIO_RUNTIME_LIBRARY_DIRS}
     ${GROSMOSDR_LIBRARIES}
-    ${LIBDSD_LIBRARIES}
     ${GNURADIO_UHD_LIBRARIES}
     ${UHD_LIBRARIES}
 	  #/usr/local/lib/
@@ -150,4 +146,4 @@ set(CMAKE_CXX_FLAGS_DEBUG "-pthread -Wall")
 
 
 add_executable(decoder main.cc p25_decoder.cc  nonstop_wavfile_sink_impl.cc)
-target_link_libraries(decoder  ${GNURADIO_RUNTIME_LIBRARIES} ${GNURADIO_PMT_LIBRARIES} ${GNURADIO_FILTER_LIBRARIES} ${GNURADIO_DIGITAL_LIBRARIES} ${GNURADIO_ANALOG_LIBRARIES} ${GNURADIO_AUDIO_LIBRARIES} ${GNURADIO_UHD_LIBRARIES} ${UHD_LIBRARIES} ${GNURADIO_BLOCKS_LIBRARIES} ${GROSMOSDR_LIBRARIES} ${Boost_LIBRARIES} ${LIBDSD_LIBRARIES} ${LIBOP25_LIBRARIES}  ${LIBOP25_REPEATER_LIBRARIES} itpp ncurses menu)
+target_link_libraries(decoder  ${GNURADIO_RUNTIME_LIBRARIES} ${GNURADIO_PMT_LIBRARIES} ${GNURADIO_FILTER_LIBRARIES} ${GNURADIO_DIGITAL_LIBRARIES} ${GNURADIO_ANALOG_LIBRARIES} ${GNURADIO_AUDIO_LIBRARIES} ${GNURADIO_UHD_LIBRARIES} ${UHD_LIBRARIES} ${GNURADIO_BLOCKS_LIBRARIES} ${GROSMOSDR_LIBRARIES} ${Boost_LIBRARIES} ${LIBOP25_LIBRARIES}  ${LIBOP25_REPEATER_LIBRARIES} itpp ncurses menu)
